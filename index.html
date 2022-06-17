@@ -27,14 +27,24 @@
                 data: []
             }
         },
-        mounted:function(){
+//      放在created比較好
+//      差異在mounted是網頁內容都做好後，再由改變data來更新網頁內容
+//      created是Vue框架建立好後，改變data的值，再用data把一開始的畫面渲染出來
+        created() {
             axios.get('https://randomuser.me/api/?results=50') // 發出取得的請求 results=50代表50筆 results=500代表500筆 
                 .then((response) => {
                     // console.log(response);
                     // this.data = response.data.results;
                     this.data = response.data.results;
-                    
                 })
+        },
+        mounted:function(){
+//             axios.get('https://randomuser.me/api/?results=50') // 發出取得的請求 results=50代表50筆 results=500代表500筆 
+//                 .then((response) => {
+//                     // console.log(response);
+//                     // this.data = response.data.results;
+//                     this.data = response.data.results;
+//                 })
         }
     }).mount('#app')
       
